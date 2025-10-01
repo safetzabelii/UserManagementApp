@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route } from 'react-router-dom';
+import UserDetails from './pages/UserDetails';
+import UserList from './pages/UserList';
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="bg-slate-100 min-h-screen font-sans">
+      <header className="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-20">
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <h1 className="text-3xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500">
+            User Management Dashboard
+          </h1>
+        </nav>
+      </header>
+      <main className="container mx-auto p-4 sm:p-6 lg:p-8">
+        <Routes>
+          <Route path="/" element={<UserList />} />
+          <Route path="/user/:id" element={<UserDetails />} />
+        </Routes>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

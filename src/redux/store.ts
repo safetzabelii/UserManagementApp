@@ -3,12 +3,13 @@ import usersReducer from './usersSlice';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+// Konfigurimi per redux-persist
 const persistConfig = {
   key: 'root',
   storage,
   version: 1,
 };
-
+// Ktu kemi krijuar nje reducer te perhershem qe mbeshtjelle reducer-in kryesor
 const persistedReducer = persistReducer(persistConfig, usersReducer);
 
 export const store = configureStore({

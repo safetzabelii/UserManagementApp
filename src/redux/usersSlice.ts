@@ -6,13 +6,13 @@ interface UsersState {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
-
+// Gjendja fillestare e slice-it te perdoruesve
 const initialState: UsersState = {
   users: [],
   status: 'idle',
   error: null,
 };
-
+// Ktu bejme pull te perdoruesve nga API-i i japur ne task
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const data = await response.json();
@@ -22,6 +22,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 const usersSlice = createSlice({
   name: 'users',
   initialState,
+  // Percaktojme se si ndryshon gjendja apo state ndaj veprimeve te CRUD ne kete rast.
   reducers: {
     addUser: (state, action: PayloadAction<User>) => {
       state.users.unshift(action.payload);

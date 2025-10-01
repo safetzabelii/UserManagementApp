@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+User Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Features
+This application implements all the core and bonus features outlined in the challenge requirements.
 
-Currently, two official plugins are available:
+Core Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+List Users: Fetches a list of users from the JSONPlaceholder API and displays them in a clean, card-based interface. User cards show their name, email, and company.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Search Functionality: A real-time, client-side search that filters users by name or email as you type. The search matches from the beginning of the string for a more intuitive experience.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+User Details Page: Clicking on a user navigates to a dedicated, detailed profile page. This page displays the user's full address, phone number, and website.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Add New User: A feature to add a new user to the list. The form is revealed by a slide-down animation and includes validation for required fields (name and email).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Bonus Features Implemented
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Sorting: The user list can be sorted by name or email in both ascending and descending order.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Redux for State Management: The entire application state (including the user list, API status, etc.) is managed globally using Redux Toolkit.
+
+
+Update and Delete Functionality: Users can be deleted directly from the main list or have their details updated on their profile page.
+
+Local State Persistence: All changes made to the user list (adds, updates, deletes) are automatically saved to the browser's localStorage using redux-persist.
+
+Tech Stack
+This project is built with a modern and powerful set of front-end technologies:
+
+Framework: React (v18+) with TypeScript
+
+Build Tool: Vite
+
+Styling: Tailwind CSS
+
+Routing: React Router
+
+State Management: Redux Toolkit
+
+State Persistence: Redux Persist

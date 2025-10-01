@@ -11,12 +11,12 @@ type SortOption = 'name-asc' | 'name-desc' | 'email-asc' | 'email-desc' | 'defau
 const UserList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { users, status, error } = useSelector((state: RootState) => state.users);
-  
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [sortOption, setSortOption] = useState<SortOption>('default');
   const [isFormVisible, setIsFormVisible] = useState(false);
 
   useEffect(() => {
+    //Marrim perdoruesit vetem nese lista eshte e zbrazet, qe te mos mbishkkruajm te dhenat e ruajtura lokalisht
     if (status === 'idle' && users.length === 0) {
       dispatch(fetchUsers());
     }
@@ -28,7 +28,7 @@ const UserList: React.FC = () => {
     };
     dispatch(addUser(userWithId));
   };
-
+    // Ktu kemi perdor useMemo per optimizim te performances.
   const sortedAndFilteredUsers = useMemo(() => {
     const result = users.filter(user =>
       user.name.toLowerCase().startsWith(searchTerm.toLowerCase()) ||

@@ -31,8 +31,8 @@ const UserList: React.FC = () => {
 
   const sortedAndFilteredUsers = useMemo(() => {
     const result = users.filter(user =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+      user.name.toLowerCase().startsWith(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().startsWith(searchTerm.toLowerCase())
     );
     switch (sortOption) {
       case 'name-asc': result.sort((a, b) => a.name.localeCompare(b.name)); break;
@@ -49,13 +49,6 @@ const UserList: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {isFormVisible && (
-        <AddUserForm 
-          onAddUser={handleAddUser} 
-          onClose={() => setIsFormVisible(false)}
-        />
-      )}
-      
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-4 bg-white rounded-xl shadow-md">
         <div className="relative w-full md:w-1/3">
           <span className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -82,12 +75,21 @@ const UserList: React.FC = () => {
             <option value="email-desc">Email (Z-A)</option>
           </select>
           <button 
-            onClick={() => setIsFormVisible(true)}
-            className="flex items-center justify-center gap-2 w-full md:w-auto px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition"
+            onClick={() => setIsFormVisible(!isFormVisible)}
+            className="flex items-center justify-center gap-2 w-full md:w-auto px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-            Add User
+            {isFormVisible ? 'Close Form' : 'Add User'}
           </button>
+        </div>
+      </div>
+      
+      <div className={`transition-all duration-700 ease-in-out overflow-hidden ${isFormVisible ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="mb-8">
+            <AddUserForm 
+                onAddUser={handleAddUser} 
+                onClose={() => setIsFormVisible(false)}
+            />
         </div>
       </div>
 

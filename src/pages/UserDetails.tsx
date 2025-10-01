@@ -63,7 +63,7 @@ const UserDetails: React.FC = () => {
             <p className="text-lg text-gray-500">{user.company.name}</p>
           </div>
           <div className="sm:ml-auto">
-             {!isEditing && <button onClick={() => setIsEditing(true)} className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700">Edit Profile</button>}
+             {!isEditing && <button onClick={() => setIsEditing(true)} className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors">Edit Profile</button>}
           </div>
         </div>
       </div>
@@ -71,9 +71,10 @@ const UserDetails: React.FC = () => {
       <div className="p-8">
         {!isEditing ? (
           <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-            <div className="col-span-1"><dt className="font-semibold text-gray-700">Address</dt><dd className="mt-1 text-gray-900">{fullAddress}</dd></div> {/* [cite: 1] */}
-            <div className="col-span-1"><dt className="font-semibold text-gray-700">Phone</dt><dd className="mt-1 text-gray-900">{user.phone}</dd></div> {/* [cite: 1] */}
-            <div className="col-span-1"><dt className="font-semibold text-gray-700">Website</dt><dd className="mt-1 text-blue-600 hover:underline"><a href={`http://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a></dd></div> {/* [cite: 1] */}
+            <div className="col-span-1"><dt className="font-semibold text-gray-700">Address</dt><dd className="mt-1 text-gray-900">{fullAddress}</dd></div>
+            <div className="col-span-1"><dt className="font-semibold text-gray-700">Phone</dt><dd className="mt-1 text-gray-900">{user.phone}</dd></div>
+            <div className="col-span-1"><dt className="font-semibold text-gray-700">Website</dt><dd className="mt-1 text-blue-600 hover:underline"><a href={`http://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a></dd></div>
+            <div className="col-span-1"><dt className="font-semibold text-gray-700">Email</dt><dd className="mt-1 text-gray-900">{user.email}</dd></div>
           </dl>
         ) : (
           <form onSubmit={handleUpdate} className="space-y-6">
@@ -85,8 +86,8 @@ const UserDetails: React.FC = () => {
               <div><label className="block text-sm font-medium text-gray-700">Street</label><input name="address.street" value={formData?.address.street || ''} onChange={handleInputChange} className="w-full mt-1 p-2 border rounded-md"/></div>
             </div>
             <div className="flex justify-end gap-4">
-              <button type="button" onClick={() => setIsEditing(false)} className="px-6 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300">Cancel</button>
-              <button type="submit" className="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700">Save Changes</button>
+              <button type="button" onClick={() => setIsEditing(false)} className="px-6 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition-colors">Cancel</button>
+              <button type="submit" className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-colors">Save Changes</button>
             </div>
           </form>
         )}
